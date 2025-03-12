@@ -1,15 +1,6 @@
-import express from 'express';
-
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+const app = require('./app');
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Serveur démarré sur le port ${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`); 
 });
-
-// Ajoute cette ligne pour exporter `app`
-export default app;

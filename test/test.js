@@ -1,12 +1,18 @@
-import request from 'supertest';
-import { expect } from 'chai';
-import app from '../server.js'; // Assure-toi que server.js exporte `app`
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app');
 
+chai.use(chaiHttp);
+const { expect } = chai;
 
-describe('Test de la route principale', () => {
-    it('devrait retourner Hello, World!', async () => {
-        const res = await request(app).get('/');
+describe("GET /", () => {
+  it("should return Hello World", (done) => {
+    chai.request(app)
+      .get("/")
+      .end((err, res) => {
         expect(res.status).to.equal(200);
-        expect(res.text).to.equal('Hello, World!');
-    });
+        expect(res.text).to.equal("Hello World!");
+        done();
+      });
+  });
 });
